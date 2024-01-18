@@ -61,7 +61,7 @@ Windows:
 
 ## 📫 Contributing to Django-Blog.
 
-To contribute to <project_name>, follow these steps:
+To contribute to Django-Blog, follow these steps:
 
 1. Fork this repository.
 2. Create a branch: `git checkout -b <branch_name>`.
