@@ -1,11 +1,5 @@
 # Django-Blog
 
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/iuricode/README-template?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
-
 > Powered by Django, our blog project delivers a robust backend solution tailored for efficient content creation, organization, and publication. With features such as user authentication, category tagging, and search functionality, it provides a versatile and user-friendly environment for bloggers to focus on their writing and for readers to explore a wealth of curated articles.
 
 <!--
