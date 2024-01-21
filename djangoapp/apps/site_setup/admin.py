@@ -1,5 +1,5 @@
 from django.contrib import admin
-from site_setup.models import MenuLink, SiteSetup
+from apps.site_setup.models import MenuLink, SiteSetup
 
 # Menu Link at Admin Area
 # @admin.register(MenuLink)
