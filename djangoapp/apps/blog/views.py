@@ -6,12 +6,7 @@ PER_PAGE = 9
 
 
 def index(request):
-    posts = (
-        Post
-        .objects
-        .filter(is_published=True)
-        .order_by('-pk')
-    )
+    posts = Post.objManager.get_published().order_by('-pk')
 
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")

@@ -1,8 +1,10 @@
 from django.db import models
+from django.db.models import Manager
 from utils.rands import new_slugify
 from django.contrib.auth.models import User
 from utils.images import resize_image
 from django_summernote.models import AbstractAttachment
+from .managers import PostManager
 
 # Create your models here.
 class Tag(models.Model):
@@ -69,6 +71,8 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
+    
+    objManager = PostManager()
 
     title = models.CharField(max_length=65,)
     slug = models.SlugField(
