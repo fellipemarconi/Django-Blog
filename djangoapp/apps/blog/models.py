@@ -60,6 +60,11 @@ class Page(models.Model):
     )
     content = models.TextField()
 
+    def get_absolute_url(self):
+        if not self.is_published:
+            return reverse('blog:index')
+        return reverse('blog:page', args=(self.slug,))
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = new_slugify(self.title, 4)
