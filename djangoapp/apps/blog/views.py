@@ -1,6 +1,6 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from apps.blog.models import Post, Page
 from django.db.models import Q
 from django.http import Http404
@@ -104,26 +104,22 @@ class PageDetailView(DetailView):
     def get_queryset(self):
         return super().get_queryset().filter(is_published=True)
 
-def post(request, slug):
-    post_obj = (
-        Post.objManager.get_published()
-        .filter(slug=slug)
-        .first()
-    )
-
-    if post_obj is None:
-        raise Http404()
-
-    page_title = f'{post_obj.title} - Post - '
-
-    return render(
-        request,
-        'blog/pages/post.html',
-        {
-            'post': post_obj,
-            'page_title': page_title,
-        }
-    )
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/pages/post.html'
+    context_object_name = 'post'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        page_title = f'{post.title} - Post - ' #type: ignore
+        context.update({
+            'page_title': page_title
+        })
+        return context
+    
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
 
 class TagListView(PostListView):
     allow_empty = False
