@@ -71,29 +71,22 @@ class CreatedByListView(PostListView):
         queryset = queryset.filter(created_by__pk=self._temp_context['user'].pk)
         return queryset
 
+class CategoryListView(PostListView):
+    allow_empty = False
     
-def category(request, slug):
-    posts = Post.objManager.get_published()\
-        .filter(category__slug=slug)
-
-    paginator = Paginator(posts, PER_PAGE)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-
-    if len(page_obj) == 0:
-        raise Http404()
-
-    page_title = f'{page_obj[0].category.name} - Categoria - '
-
-    return render(
-        request,
-        'blog/pages/index.html',
-        {
-            'page_obj': page_obj,
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset().filter(
+            category__slug=self.kwargs.get('slug')
+        )
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page_title = f'{self.object_list[0].category.name} - Categoria - ' #type: ignore
+        context.update({
             'page_title': page_title,
-        }
-    )
-
+        })
+        return context
+    
 def page(request, slug):
     page_obj = (
         Page.objects
